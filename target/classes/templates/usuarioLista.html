@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <h2>Usuários</h2>
+    <button type="button" class="btn btn-success toggle-btn">
+        <i class="fa fa-plus"></i> Usuário        
+    </button>
+    <br><br>
+    <div class="panel panel-default collapse" id="collapse-form">
+        <div class="panel-body">
+            <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
+            <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
+            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                <input type="hidden" ng-model="ctrl.usuario.id" />
+                <div class="form-panel">
+                    <div class="form-group">
+                        <input type="text" ng-model="ctrl.usuario.name" name="name" class="form-control" placeholder="Nome" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="ctrl.usuario.username" name="username" class="form-control" placeholder="Usuário" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="ctrl.usuario.password" name="password" class="form-control" placeholder="Senha" />
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="ctrl.usuario.role" name="role">
+                            <option selected value="ADMIN">ADMIN</option>
+                            <option value="USER">USER</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-actions float-left">
+                        <input type="submit"  value="{{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="myForm.$invalid || myForm.$pristine">
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="myForm.$pristine">Reiniciar</button>
+                    </div>
+                </div>
+            </form>
+        </div>	
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Usuário</th>
+                            <th>Função</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="usuario in ctrl.getAllUsers()">
+                            <td>{{usuario.id}}</td>
+                            <td>{{usuario.name}}</td>
+                            <td>{{usuario.username}}</td>
+                            <td>{{usuario.role}}</td>
+                            <td class="col-actions">
+                                <a ng-click="ctrl.editUser(usuario.id)" class="btn btn-primary show-btn"><i class="fa fa-edit"></i> Editar</a>
+                                <a sec:authorize="hasAuthority('ADMIN')" ng-click="ctrl.removeUser(usuario.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>		
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/collapse.js}"></script>

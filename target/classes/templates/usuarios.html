@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="usuarioApp">
+    <head>
+        <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    </head>    
+    <body>
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div ui-view></div>
+        <script type="text/javascript" th:src="@{/js/lib/angular.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/angular-ui-router.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/localforage.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/ngStorage.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/UsuarioApp.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/UsuarioService.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/UsuarioController.js}"></script>
+    </body>
+</html>

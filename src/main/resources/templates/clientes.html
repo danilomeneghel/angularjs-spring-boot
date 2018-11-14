@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="clienteApp">
+    <head>
+        <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    </head>    
+    <body>
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div ui-view></div>
+        <script type="text/javascript" th:src="@{/js/lib/angular.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/angular-ui-router.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/localforage.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/ngStorage.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/ClienteApp.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/ClienteService.js}"></script>
+        <script type="text/javascript" th:src="@{/js/app/ClienteController.js}"></script>
+    </body>
+</html>

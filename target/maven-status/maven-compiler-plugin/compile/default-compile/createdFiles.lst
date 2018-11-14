@@ -1,0 +1,13 @@
+app\controller\ClienteController.class
+app\controller\CadastroController.class
+app\CrudbootApplication.class
+app\controller\UserController.class
+app\entity\Cliente.class
+app\controller\IndexController.class
+app\repository\UserRepository.class
+app\service\UserServiceImpl.class
+app\util\CustomErrorType.class
+app\WebSecurityConfig.class
+app\repository\ClienteRepository.class
+app\entity\User.class
+app\service\ClienteServiceImpl.class
