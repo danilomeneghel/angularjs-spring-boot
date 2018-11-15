@@ -6,7 +6,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
         self.usuario = {};
         self.usuarios = [];
 
-        self.submit = submit;
+        self.submitUsuario = submitUsuario;
         self.getAllUsers = getAllUsers;
         self.createUser = createUser;
         self.updateUser = updateUser;
@@ -21,7 +21,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
         self.onlyIntegers = /^\d+$/;
         self.onlyNumbers = /^\d+([,.]\d+)?$/;
 
-        function submit() {
+        function submitUsuario() {
             if (self.usuario.id === undefined || self.usuario.id === null) {
                 console.log('Criando novo usuário', self.usuario);
                 createUser(self.usuario);
@@ -39,7 +39,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
                     self.errorMessage = '';
                     self.done = true;
                     self.usuario = {};
-                    $scope.myForm.$setPristine();
+                    $scope.usuarioForm.$setPristine();
                 },
                 function (errResponse) {
                     console.error('Erro ao criar usuário');
@@ -56,7 +56,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
                     self.successMessage = 'Usuário atualizado com sucesso!';
                     self.errorMessage = '';
                     self.done = true;
-                    $scope.myForm.$setPristine();
+                    $scope.usuarioForm.$setPristine();
                 },
                 function (errResponse) {
                     console.error('Erro ao atualizar usuário');
@@ -71,6 +71,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
                 function () {
                     console.log('Usuário ' + id + ' removido com sucesso');
                     self.successMessage = 'Usuário removido com sucesso!';
+                    self.errorMessage = '';
                 },
                 function (errResponse) {
                     console.error('Erro ao remover usuário ' + id + ', Erro :' + errResponse.data);
@@ -99,6 +100,6 @@ angular.module('usuarioApp').controller('UsuarioController', [
             self.successMessage = '';
             self.errorMessage = '';
             self.usuario = {};
-            $scope.myForm.$setPristine();
+            $scope.usuarioForm.$setPristine();
         }
     }]);

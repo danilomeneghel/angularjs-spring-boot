@@ -127,9 +127,7 @@ public class ClienteController {
         Double total = emprestimo.getValor() + ((emprestimo.getValor() * taxa/100) * emprestimo.getPeriodoMensal());
         // Adiciona o valor total
         emprestimo.setTotal(total);
-        // Adiciona o nome do cliente
-        emprestimo.setCliente(cliente.getNome());
-        
+
         logger.info("Total do emprestimo " + total);
         
         return new ResponseEntity<Emprestimo>(emprestimo, HttpStatus.OK);

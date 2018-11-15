@@ -22,12 +22,7 @@ public class IndexController {
     public String clientes() {
         return "clientes";
     }
-    
-    @RequestMapping("/simularEmprestimo/{id}")
-    public String simularEmprestimo(@PathVariable("id") Long id) {
-        return "simularEmprestimo";
-    }
-    
+        
     @RequestMapping("/usuarios")
     public String usuarios(ModelMap modal) {
         return "usuarios";

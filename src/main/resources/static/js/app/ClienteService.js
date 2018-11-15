@@ -7,6 +7,9 @@ angular.module('clienteApp').factory('ClienteService', [
             loadAllClientes: loadAllClientes,
             getAllClientes: getAllClientes,
             getCliente: getCliente,
+            clienteEmprestimo: clienteEmprestimo,
+            resultadoEmprestimo: resultadoEmprestimo,
+            simularEmprestimo: simularEmprestimo,
             createCliente: createCliente,
             updateCliente: updateCliente,
             removeCliente: removeCliente
@@ -18,31 +21,59 @@ angular.module('clienteApp').factory('ClienteService', [
             var deferred = $q.defer();
             $http.get(urls.CLIENTE_SERVICE_API).then(
                 function (response) {
-                    console.log('Fetched successfully all clientes');
+                    console.log('Clientes carregados com sucesso');
                     $localStorage.clientes = response.data;
                     deferred.resolve(response);
                 },
                 function (errResponse) {
-                    console.error('Error while loading clientes');
+                    console.error('Erro ao carregar clientes');
                     deferred.reject(errResponse);
                 }
             );
             return deferred.promise;
         }
+        
+        function clienteEmprestimo() {
+            return $localStorage.cliente;
+        }
+        
+        function resultadoEmprestimo() {
+            return $localStorage.emprestimo;
+        }
 
+        function simularEmprestimo(emprestimo, id) {
+            var deferred = $q.defer();
+            console.log(emprestimo);
+            console.log(id);
+            $http.put(urls.EMPRESTIMO_SERVICE_API + id, emprestimo).then(
+                function (response) {
+                    console.log('id '+id);
+                    $localStorage.emprestimo = response.data;
+                    deferred.resolve(response);
+                },
+                function (errResponse) {
+                    console.error('Erro ao atualizar o cliente com o id :' + id);
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+        
         function getAllClientes() {
             return $localStorage.clientes;
         }
 
         function getCliente(id) {
+            $localStorage.cliente = "";
+            $localStorage.emprestimo = "";
             var deferred = $q.defer();
             $http.get(urls.CLIENTE_SERVICE_API + id).then(
                 function (response) {
-                    console.log('Fetched successfully Cliente with id :' + id);
+                    console.log('Cliente carregado com id :' + id);
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while loading cliente with id :' + id);
+                    console.error('Erro ao carregar o cliente com o id :' + id);
                     deferred.reject(errResponse);
                 }
             );
@@ -58,7 +89,7 @@ angular.module('clienteApp').factory('ClienteService', [
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while creating Cliente : ' + errResponse.data.errorMessage);
+                    console.error('Erro ao criar cliente : ' + errResponse.data.errorMessage);
                     deferred.reject(errResponse);
                 }
             );
@@ -74,7 +105,7 @@ angular.module('clienteApp').factory('ClienteService', [
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while updating Cliente with id :' + id);
+                    console.error('Erro ao atualizar cliente com id :' + id);
                     deferred.reject(errResponse);
                 }
             );
@@ -90,7 +121,7 @@ angular.module('clienteApp').factory('ClienteService', [
                         deferred.resolve(response.data);
                     },
                     function (errResponse) {
-                        console.error('Error while removing Cliente with id :' + id);
+                        console.error('Erro ao remover o cliente com id :' + id);
                         deferred.reject(errResponse);
                     }
                 );

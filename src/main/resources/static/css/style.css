@@ -207,3 +207,11 @@ fieldset {
 .form-panel {
     padding: 15px !important;
 }
+
+.modal-content {
+    padding: 10px !important;
+}
+
+.modal-header .close {
+    margin-top: -30px;
+}

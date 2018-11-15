@@ -18,12 +18,12 @@ angular.module('usuarioApp').factory('UsuarioService', [
             var deferred = $q.defer();
             $http.get(urls.USER_SERVICE_API).then(
                 function (response) {
-                    console.log('Fetched successfully all usuarios');
+                    console.log('Usuários carregado com sucesso');
                     $localStorage.usuarios = response.data;
                     deferred.resolve(response);
                 },
                 function (errResponse) {
-                    console.error('Error while loading usuarios');
+                    console.error('Erro ao carregar usuarios');
                     deferred.reject(errResponse);
                 }
             );
@@ -38,11 +38,11 @@ angular.module('usuarioApp').factory('UsuarioService', [
             var deferred = $q.defer();
             $http.get(urls.USER_SERVICE_API + id).then(
                 function (response) {
-                    console.log('Fetched successfully User with id :' + id);
+                    console.log('Carregado usuário com id :' + id);
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while loading usuario with id :' + id);
+                    console.error('Erro ao carregar usuário com id :' + id);
                     deferred.reject(errResponse);
                 }
             );
@@ -57,7 +57,7 @@ angular.module('usuarioApp').factory('UsuarioService', [
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while creating User : ' + errResponse.data.errorMessage);
+                    console.error('Erro ao criar usuário : ' + errResponse.data.errorMessage);
                     deferred.reject(errResponse);
                 }
             );
@@ -72,7 +72,7 @@ angular.module('usuarioApp').factory('UsuarioService', [
                     deferred.resolve(response.data);
                 },
                 function (errResponse) {
-                    console.error('Error while updating User with id :' + id);
+                    console.error('Erro ao atualizar usuário com id :' + id);
                     deferred.reject(errResponse);
                 }
             );
@@ -88,7 +88,7 @@ angular.module('usuarioApp').factory('UsuarioService', [
                         deferred.resolve(response.data);
                     },
                     function (errResponse) {
-                        console.error('Error while removing User with id :' + id);
+                        console.error('Erro ao remover o usuário com id :' + id);
                         deferred.reject(errResponse);
                     }
                 );

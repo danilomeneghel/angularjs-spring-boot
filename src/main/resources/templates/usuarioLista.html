@@ -8,7 +8,7 @@
         <div class="panel-body">
             <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
             <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
-            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+            <form ng-submit="ctrl.submitUsuario()" name="usuarioForm" class="form-horizontal">
                 <input type="hidden" ng-model="ctrl.usuario.id" />
                 <div class="form-panel">
                     <div class="form-group">
@@ -29,8 +29,8 @@
                 </div>
                 <div class="row">
                     <div class="form-actions float-left">
-                        <input type="submit"  value="{{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="myForm.$invalid || myForm.$pristine">
-                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="myForm.$pristine">Reiniciar</button>
+                        <input type="submit"  value="{{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine">
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="usuarioForm.$pristine">Reiniciar</button>
                     </div>
                 </div>
             </form>

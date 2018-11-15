@@ -3,38 +3,27 @@ package app.entity;
 import javax.persistence.*;
 
 public class Emprestimo {
-    
+
     @Transient
     @Column(nullable = false, updatable = false)
-    private Double valor = 0.0;
-    
+    private Double valor;
+
     @Transient
     @Column(nullable = false, updatable = false)
-    private Integer periodoMensal = 0;
-    
+    private Integer periodoMensal;
+
     @Transient
     @Column(updatable = false)
-    private Double total = 0.0;
-    
-    @Transient
-    @Column(updatable = false)
-    private String cliente = "";
-    
+    private Double total;
+
     public Emprestimo() {
     }
 
-    public Emprestimo(Double valor, Integer periodoMensal) {
-        super();
-        this.valor = valor;
-        this.periodoMensal = periodoMensal;
-    }
-    
-    public Emprestimo(Double valor, Integer periodoMensal, Double total, String cliente) {
+    public Emprestimo(Double valor, Integer periodoMensal, Double total) {
         super();
         this.valor = valor;
         this.periodoMensal = periodoMensal;
         this.total = total;
-        this.cliente = cliente;
     }
 
     public Double getValor() {
@@ -61,12 +50,4 @@ public class Emprestimo {
         this.total = total;
     }
 
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
-    
 }

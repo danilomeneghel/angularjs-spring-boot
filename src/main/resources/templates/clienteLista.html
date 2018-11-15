@@ -8,7 +8,7 @@
         <div class="panel-body">
             <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
             <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
-            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+            <form ng-submit="ctrl.submitCliente()" name="clienteForm" class="form-horizontal">
                 <input type="hidden" ng-model="ctrl.cliente.id" />
                 <div class="form-panel">
                     <div class="form-group">
@@ -23,8 +23,8 @@
                 </div>
                 <div class="row">
                     <div class="form-actions float-left">
-                        <input type="submit"  value="{{!ctrl.cliente.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="myForm.$invalid || myForm.$pristine">
-                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="myForm.$pristine">Reiniciar</button>
+                        <input type="submit"  value="{{!ctrl.cliente.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="clienteForm.$invalid || clienteForm.$pristine">
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="clienteForm.$pristine">Reiniciar</button>
                     </div>
                 </div>
             </form>
@@ -52,13 +52,59 @@
                             <td>{{cliente.risco}}</td>
                             <td>{{cliente.endereco}}</td>
                             <td class="col-actions">
-                                <a href="/simularEmprestimo/{{cliente.id}}" ng-click="ctrl.setIdCliente(cliente.id)" class="btn btn-default"><i class="fa fa-dollar"></i> Simular</a>
+                                <a ng-click="ctrl.clienteEmprestimo(cliente.id)" class="btn btn-default" data-toggle="modal" data-target="#simulacao"><i class="fa fa-dollar"></i> Simular</a>
                                 <a ng-click="ctrl.editCliente(cliente.id)" class="btn btn-primary show-btn"><i class="fa fa-edit"></i> Editar</a>
                                 <a sec:authorize="hasAuthority('ADMIN')" ng-click="ctrl.removeCliente(cliente.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>		
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="simulacao" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Simular Empréstimo</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
+                    <form ng-submit="ctrl.submitEmprestimo()" name="emprestimoForm" class="form-horizontal">
+                        <input type="hidden" ng-model="ctrl.cliente.id" />
+                        <div class="form-panel">
+                            <div class="form-group">
+                                <input type="text" ng-model="ctrl.emprestimo.valor" name="valor" class="form-control" placeholder="Valor" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" ng-model="ctrl.emprestimo.periodoMensal" name="periodoMensal" class="form-control" placeholder="Período Mensal" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-actions float-left">
+                                <input type="submit"  value="Simular" class="btn btn-success" ng-disabled="emprestimoForm.$invalid || emprestimoForm.$pristine">
+                                <button type="button" ng-click="ctrl.resetEmprestimo()" class="btn btn-default" ng-disabled="emprestimoForm.$pristine">Limpar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>	
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    Cliente: {{ctrl.cliente.nome}} <br>
+                    Risco: {{ctrl.cliente.risco}} <br>
+
+                    Capital Empréstimo: {{ctrl.resultadoEmprestimo().valor}} <br>
+                    Período Mensal: {{ctrl.resultadoEmprestimo().periodoMensal}} <br><br>
+
+                    <strong>Total do Empréstimo: R$ {{ctrl.resultadoEmprestimo().total}}</strong> <br>
+                </div>
             </div>
         </div>
     </div>

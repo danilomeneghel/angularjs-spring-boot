@@ -3,7 +3,8 @@ var url_base = window.location.origin;
 
 app.constant('urls', {
     BASE: url_base,
-    CLIENTE_SERVICE_API: url_base + '/api/cliente/'
+    CLIENTE_SERVICE_API: url_base + '/api/cliente/',
+    EMPRESTIMO_SERVICE_API: url_base + '/api/emprestimo/'
 });
 
 app.config([
