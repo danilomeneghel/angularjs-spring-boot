@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <h2>Simular Empréstimo</h2>
+    <br><br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
+            <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
+            <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                <div class="form-panel">
+                    <div class="form-group">
+                        <input type="text" ng-model="ctrl.emprestimo.valor" name="valor" class="form-control" placeholder="Valor" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="ctrl.emprestimo.periodoMensal" name="periodoMensal" class="form-control" placeholder="Período Mensal" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-actions float-left">
+                        <input type="submit"  value="Simular" class="btn btn-success" ng-disabled="myForm.$invalid || myForm.$pristine">
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="myForm.$pristine">Reiniciar</button>
+                    </div>
+                </div>
+            </form>
+        </div>	
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+                Cliente: {{ctrl.getCliente().nome}} <br>
+                Risco {{ctrl.getCliente().risco}} <br>
+                
+                Capital Empréstimo: {{ctrl.getEmprestimo().valor}} <br>
+                Período Mensal: {{ctrl.getEmprestimo().periodoMensal}} <br><br>
+                <strong>Total do Empréstimo: R$ {{ctrl.getEmprestimo().total}}</strong> <br>
+        </div>
+    </div>
+</div>

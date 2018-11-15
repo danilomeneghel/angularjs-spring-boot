@@ -19,12 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Danilo
  */
-public class UserTest {
+public class UserControllerTest {
 
     @Autowired
     UserServiceImpl userService;
 
-    public UserTest() {
+    public UserControllerTest() {
     }
 
     @BeforeClass
@@ -66,10 +66,7 @@ public class UserTest {
     
     @Test
     public void deleteUser() {
-        Long id = new Long(1);
-        
         // Deleta usuário
-        userService.deleteUserById(id);
-        
+        userService.deleteUserById(new Long(1));        
     }
 }

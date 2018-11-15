@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     @RequestMapping("/")
-    String index() {
+    public String index() {
         return "index";
     }
 
@@ -19,17 +19,22 @@ public class IndexController {
     }
     
     @RequestMapping("/clientes")
-    String clientes(ModelMap modal) {
+    public String clientes() {
         return "clientes";
     }
     
+    @RequestMapping("/simularEmprestimo/{id}")
+    public String simularEmprestimo(@PathVariable("id") Long id) {
+        return "simularEmprestimo";
+    }
+    
     @RequestMapping("/usuarios")
-    String usuarios(ModelMap modal) {
+    public String usuarios(ModelMap modal) {
         return "usuarios";
     }
 
     @RequestMapping("/partials/{page}")
-    String partialHandler(@PathVariable("page") final String page) {
+    public String partialHandler(@PathVariable("page") final String page) {
         return page;
     }
 

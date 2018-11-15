@@ -16,7 +16,7 @@ angular.module('clienteApp').factory('ClienteService', [
 
         function loadAllClientes() {
             var deferred = $q.defer();
-            $http.get(urls.USER_SERVICE_API).then(
+            $http.get(urls.CLIENTE_SERVICE_API).then(
                 function (response) {
                     console.log('Fetched successfully all clientes');
                     $localStorage.clientes = response.data;
@@ -36,7 +36,7 @@ angular.module('clienteApp').factory('ClienteService', [
 
         function getCliente(id) {
             var deferred = $q.defer();
-            $http.get(urls.USER_SERVICE_API + id).then(
+            $http.get(urls.CLIENTE_SERVICE_API + id).then(
                 function (response) {
                     console.log('Fetched successfully Cliente with id :' + id);
                     deferred.resolve(response.data);
@@ -52,7 +52,7 @@ angular.module('clienteApp').factory('ClienteService', [
         function createCliente(cliente) {
             var deferred = $q.defer();
             console.log(cliente);
-            $http.post(urls.USER_SERVICE_API, cliente).then(
+            $http.post(urls.CLIENTE_SERVICE_API, cliente).then(
                 function (response) {
                     loadAllClientes();
                     deferred.resolve(response.data);
@@ -68,7 +68,7 @@ angular.module('clienteApp').factory('ClienteService', [
         function updateCliente(cliente, id) {
             var deferred = $q.defer();
             console.log(cliente);
-            $http.put(urls.USER_SERVICE_API + id, cliente).then(
+            $http.put(urls.CLIENTE_SERVICE_API + id, cliente).then(
                 function (response) {
                     loadAllClientes();
                     deferred.resolve(response.data);
@@ -84,7 +84,7 @@ angular.module('clienteApp').factory('ClienteService', [
         function removeCliente(id) {
             if(confirm('Tem certeza que deseja excluir esse item?')) {
                 var deferred = $q.defer();
-                $http.delete(urls.USER_SERVICE_API + id).then(
+                $http.delete(urls.CLIENTE_SERVICE_API + id).then(
                     function (response) {
                         loadAllClientes();
                         deferred.resolve(response.data);

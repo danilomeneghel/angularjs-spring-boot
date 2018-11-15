@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import app.entity.Cliente;
+import app.entity.Emprestimo;
 import app.service.ClienteServiceImpl;
 import app.util.CustomErrorType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api")
@@ -30,7 +32,7 @@ public class ClienteController {
     @Autowired
     ClienteServiceImpl clienteService;
 
-    // Lista todos os Usuários
+    // Lista todos os Clientes
     @RequestMapping(value = "/cliente/", method = RequestMethod.GET)
     public ResponseEntity<List<Cliente>> listAllClientes() {
         List<Cliente> clientes = clienteService.findAllClientes();
@@ -40,7 +42,7 @@ public class ClienteController {
         return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
     }
 
-    // Pega um Usuário
+    // Pega um Cliente
     @RequestMapping(value = "/cliente/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getCliente(@PathVariable("id") Long id) {
         Cliente cliente = clienteService.findClienteById(id);
@@ -51,7 +53,7 @@ public class ClienteController {
         }
         return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
-
+    
     // Cria o Cliente
     @RequestMapping(value = "/cliente/", method = RequestMethod.POST)
     public ResponseEntity<?> createCliente(@RequestBody Cliente cliente, UriComponentsBuilder ucBuilder) {
@@ -106,4 +108,42 @@ public class ClienteController {
         return new ResponseEntity<Cliente>(HttpStatus.NO_CONTENT);
     }
 
+    // Simular Emprestimo
+    @RequestMapping(value = "/emprestimo/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> simularEmprestimo(@PathVariable("id") Long id, @RequestBody Emprestimo emprestimo) {
+        // Localiza o cliente
+        Cliente cliente = clienteService.findClienteById(id);        
+        if (cliente == null) {
+            logger.error("Não é possível simular empréstimo. Cliente com id {} não encontrado.", id);
+            return new ResponseEntity(new CustomErrorType("Não é possível atualizar. Cliente com id " + id + " não encontrado."),
+                    HttpStatus.NOT_FOUND);
+        }
+        
+        // Pega a taxa para emprestimo
+        Double taxa = taxaEmprestimo(cliente.getRisco(), emprestimo.getValor());
+        // Calcula o total do emprestimo em juros compostos
+        // Double total = emprestimo.getValor() * Math.pow((1 + taxa/100), emprestimo.getPeriodoMensal());
+        // Calcula o total do emprestimo em juros simples
+        Double total = emprestimo.getValor() + ((emprestimo.getValor() * taxa/100) * emprestimo.getPeriodoMensal());
+        // Adiciona o valor total
+        emprestimo.setTotal(total);
+        // Adiciona o nome do cliente
+        emprestimo.setCliente(cliente.getNome());
+        
+        logger.info("Total do emprestimo " + total);
+        
+        return new ResponseEntity<Emprestimo>(emprestimo, HttpStatus.OK);
+    }
+    
+    public Double taxaEmprestimo(String risco, Double valor) {
+        Double taxa;       
+        if (risco.equals("A")) {
+            taxa = 1.9;
+        } else if (risco.equals("B")) {
+            taxa = 5.0;
+        } else {
+            taxa = 10.0;
+        }
+        return taxa;
+    }
 }

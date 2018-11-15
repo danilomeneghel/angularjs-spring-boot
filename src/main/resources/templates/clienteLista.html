@@ -52,6 +52,7 @@
                             <td>{{cliente.risco}}</td>
                             <td>{{cliente.endereco}}</td>
                             <td class="col-actions">
+                                <a href="/simularEmprestimo/{{cliente.id}}" ng-click="ctrl.setIdCliente(cliente.id)" class="btn btn-default"><i class="fa fa-dollar"></i> Simular</a>
                                 <a ng-click="ctrl.editCliente(cliente.id)" class="btn btn-primary show-btn"><i class="fa fa-edit"></i> Editar</a>
                                 <a sec:authorize="hasAuthority('ADMIN')" ng-click="ctrl.removeCliente(cliente.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
                             </td>

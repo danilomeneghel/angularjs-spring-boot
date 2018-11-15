@@ -23,11 +23,11 @@ angular.module('usuarioApp').controller('UsuarioController', [
 
         function submit() {
             if (self.usuario.id === undefined || self.usuario.id === null) {
-                console.log('Salvando novo usuário', self.usuario);
+                console.log('Criando novo usuário', self.usuario);
                 createUser(self.usuario);
             } else {
                 updateUser(self.usuario, self.usuario.id);
-                console.log('Usuário atualizado com id ', self.usuario.id);
+                console.log('Atualizado usuário com id ', self.usuario.id);
             }
         }
 
@@ -70,6 +70,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
             UsuarioService.removeUser(id).then(
                 function () {
                     console.log('Usuário ' + id + ' removido com sucesso');
+                    self.successMessage = 'Usuário removido com sucesso!';
                 },
                 function (errResponse) {
                     console.error('Erro ao remover usuário ' + id + ', Erro :' + errResponse.data);
@@ -89,7 +90,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
                     self.usuario = usuario;
                 },
                 function (errResponse) {
-                    console.error('Erro ao remover usuário ' + id + ', Erro :' + errResponse.data);
+                    console.error('Erro ao editar usuário ' + id + ', Erro :' + errResponse.data);
                 }
             );
         }

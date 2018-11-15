@@ -20,12 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Danilo
  */
-public class ClienteTest {
+public class ClienteControllerTest {
 
     @Autowired
     ClienteServiceImpl clienteService;
 
-    public ClienteTest() {
+    public ClienteControllerTest() {
     }
 
     @BeforeClass
@@ -70,10 +70,7 @@ public class ClienteTest {
     
     @Test
     public void deleteCliente() {
-        Long id = new Long(1);
-        
         // Deleta cliente
-        clienteService.deleteClienteById(id);
-        
+        clienteService.deleteClienteById(new Long(1));        
     }
 }

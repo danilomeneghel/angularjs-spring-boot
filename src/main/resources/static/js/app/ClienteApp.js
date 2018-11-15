@@ -3,7 +3,7 @@ var url_base = window.location.origin;
 
 app.constant('urls', {
     BASE: url_base,
-    USER_SERVICE_API: url_base + '/api/cliente/'
+    CLIENTE_SERVICE_API: url_base + '/api/cliente/'
 });
 
 app.config([

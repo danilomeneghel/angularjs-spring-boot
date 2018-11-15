@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clienteApp').controller('ClienteController', [
-    'ClienteService', '$scope', function (ClienteService, $scope) {
+    'ClienteService', '$scope', '$localStorage', function (ClienteService, $scope, $localStorage) {
         var self = this;
         self.cliente = {};
         self.clientes = [];
@@ -12,23 +12,20 @@ angular.module('clienteApp').controller('ClienteController', [
         self.updateCliente = updateCliente;
         self.removeCliente = removeCliente;
         self.editCliente = editCliente;
+        self.setIdCliente = setIdCliente;
         self.reset = reset;
 
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
 
-        self.onlyIntegers = /^\d+$/;
-        self.onlyNumbers = /^\d+([,.]\d+)?$/;
-
         function submit() {
-            console.log('Submitting');
             if (self.cliente.id === undefined || self.cliente.id === null) {
-                console.log('Saving New Cliente', self.cliente);
+                console.log('Criando novo cliente', self.cliente);
                 createCliente(self.cliente);
             } else {
                 updateCliente(self.cliente, self.cliente.id);
-                console.log('Cliente atualizado com id ', self.cliente.id);
+                console.log('Atualizando cliente com id ', self.cliente.id);
             }
         }
 
@@ -71,6 +68,7 @@ angular.module('clienteApp').controller('ClienteController', [
             ClienteService.removeCliente(id).then(
                 function () {
                     console.log('Cliente ' + id + ' removido com sucesso');
+                    self.successMessage = 'Cliente removido com sucesso!';
                 },
                 function (errResponse) {
                     console.error('Erro ao remover cliente ' + id + ', Erro :' + errResponse.data);
@@ -90,11 +88,15 @@ angular.module('clienteApp').controller('ClienteController', [
                     self.cliente = cliente;
                 },
                 function (errResponse) {
-                    console.error('Erro ao remover cliente ' + id + ', Erro :' + errResponse.data);
+                    console.error('Erro ao editar cliente ' + id + ', Erro :' + errResponse.data);
                 }
             );
         }
         
+        function setIdCliente(id) {
+            $localStorage.idCliente = id;
+        }
+
         function reset() {
             self.successMessage = '';
             self.errorMessage = '';
