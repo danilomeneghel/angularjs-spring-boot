@@ -57,9 +57,13 @@ Ao concluir a configuração, basta digitar no terminal "mvn spring-boot:run" e 
 
 http://localhost:8080/
 
-## Login
-	- Username: admin
-	- Password: admin
+## Demonstração
+
+https://angularjs-spring-boot.herokuapp.com/ <br>
+
+- Login
+    - Username: admin
+    - Password: admin
 
 ## Licença
 
