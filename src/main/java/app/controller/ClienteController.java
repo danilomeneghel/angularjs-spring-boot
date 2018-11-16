@@ -20,8 +20,6 @@ import app.entity.Cliente;
 import app.entity.Emprestimo;
 import app.service.ClienteServiceImpl;
 import app.util.CustomErrorType;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api")
@@ -108,7 +106,7 @@ public class ClienteController {
         return new ResponseEntity<Cliente>(HttpStatus.NO_CONTENT);
     }
 
-    // Simular Emprestimo
+    // Simula Emprestimo
     @RequestMapping(value = "/emprestimo/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> simularEmprestimo(@PathVariable("id") Long id, @RequestBody Emprestimo emprestimo) {
         // Localiza o cliente
@@ -128,11 +126,11 @@ public class ClienteController {
         // Adiciona o valor total
         emprestimo.setTotal(total);
 
-        logger.info("Total do emprestimo " + total);
-        
+        logger.info("Total do emprestimo " + total);        
         return new ResponseEntity<Emprestimo>(emprestimo, HttpStatus.OK);
     }
     
+    // Calcula a taxa de empréstimo
     public Double taxaEmprestimo(String risco, Double valor) {
         Double taxa;       
         if (risco.equals("A")) {

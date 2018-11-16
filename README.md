@@ -5,10 +5,12 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 ## Características
 
 - CRUD
+- API RestFul
 - ACL
 - Validation
 - Login
 - Responsive
+- JUnit
 
 ## Requisitos
 
