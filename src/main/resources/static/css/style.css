@@ -25,17 +25,30 @@ h3, .h3 {
 }
 
 .bg-login {
-    background-color: #eaeaea;
-    min-height: 650px !important;
+    background-image: radial-gradient(#fff 8%, #0271cc 100%);
+    min-height: 750px !important;
 }
 .bg-login .container-login {
     max-width: 350px;
     margin: 0px auto !important;
     padding-top: 90px !important;
 }
+.bg-login .container-cadastro {
+    max-width: 350px;
+    margin: 0px auto !important;
+    padding-top: 120px !important;
+}
 .bg-login .container-login a {
     color: #333333 !important;
     text-decoration: none;
+}
+.logo-login {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.modal-header {
+    border-bottom: none !important;
 }
 
 .panel {
@@ -52,6 +65,7 @@ h3, .h3 {
 }
 .panel-default {
     border-color: #ddd;
+    border-radius: 10px 10px 10px 10px !important;
 }
 .panel-body {
     padding: 15px;
@@ -59,10 +73,15 @@ h3, .h3 {
 .box-login {
     box-shadow: 1px 3px 12px #50575b;    
 }
-input:focus {
-    box-shadow: 1px 1px 5px #707577 !important;
-    border: 1px solid #707577 !important;
+
+input {
+    border-radius: 30px 30px 30px 30px !important;
 }
+input:focus {
+    box-shadow: 1px 1px 5px rgba(57,181,74) !important;
+    border: 1px solid #2d993c !important;
+}
+
 .title-login {
     text-align: center;
     padding-bottom: 6px;
@@ -103,7 +122,7 @@ fieldset {
 .fa-user {
     float: left;
     position: relative;
-    color: #343C41 !important;
+    color: #39B54A !important;
     font-size: 16px !important;
     top: 25px;
     left: 12px;
@@ -112,7 +131,7 @@ fieldset {
 .fa-lock {
     float: left;
     position: relative;
-    color: #343C41 !important;
+    color: #39B54A !important;
     font-size: 16px !important;
     top: 25px;
     left: 12px;
@@ -123,15 +142,48 @@ fieldset {
 }
 
 .btn-login {
-    background-color: #343C41 !important;
-    color: #eee !important;
-    border: 1px solid #000 !important;
+    background-color: #39B54A !important;
+    color: #fff !important;
+    border: 1px solid #2d993c !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgba(57,181,74,0.5);
 }
 .btn-logout {
-    background-color: #343C41 !important;
-    color: #eee !important;
-    border: 1px solid #000 !important;
+    background-color: #39B54A !important;
+    color: #fff !important;
+    border: 1px solid #2d993c !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgba(57,181,74,0.5);
 }
+.btn-success {
+    background-color: #39B54A !important;
+    color: #fff !important;
+    border: 1px solid #2d993c !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgba(57,181,74,0.5);
+}
+.btn-default {
+    background-color: #fff !important;
+    color: #39B54A !important;
+    border: 1px solid #2d993c !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgba(57,181,74,0.5);
+}
+.btn-primary {
+    background-color: #337ab7;
+    color: #fff;
+    border: 1px solid #2e6da4 !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgb(44,108,160,0.5);
+}
+.btn-danger {
+    background-color: #d9534f;
+    color: #fff;
+    border: 1px solid #d43f3a !important;
+    border-radius: 30px 30px 30px 30px !important;
+    box-shadow: 1px 3px 5px 0px rgb(201,48,44,0.5);
+}
+
 .alert {
     margin: 2px 0px !important;
 }
@@ -139,9 +191,62 @@ fieldset {
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
-.navbar-header a {
-    font-weight: bold;
+
+.navbar-default {
+    background-color: #0271CC !important;
 }
+.navbar-default .navbar-brand {
+    color: #fff !important;
+    font-size: 16px !important;
+    padding: 20px 10px !important;
+    height: 60px !important;
+}
+.navbar-nav {
+    margin: 0px 0px !important;
+}
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-text {
+    color: #fff !important;
+}
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #fff !important;
+}
+.navbar-static-top {
+    z-index: 9 !important;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #005da5 !important;
+    color: #ffffff !important;
+}
+.navbar-default .navbar-collapse {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.navbar-nav .open .dropdown-menu {
+    background-color: #005da5 !important;
+    color: #ffffff !important;
+}
+.navbar-nav .dropdown-menu > li > a, .navbar-nav .dropdown-menu > li > a:hover {
+    background-color: #005da5 !important;
+    color: #ffffff !important;
+}
+
+.navbar-toggle {
+    background-color: #ddd !important;
+}
+.menu-item {
+    float: left;
+}
+.menu-item a {
+    color: #fff !important;
+    background-color: transparent !important;
+    padding: 20px 15px !important;
+}
+.menu-item a:hover {
+    color: #fff !important;
+    background-color: #005da5 !important;
+}
+
 .menubar {
     float: left;
     width: auto;
@@ -191,11 +296,13 @@ fieldset {
     color:red;
 }
 
+.container-header {
+    margin: 0px 25px !important;
+}
 .container-list {
     margin: 0px 30px;
     padding: 5px;
 }
-
 .container-error {
     margin-top: 35px;
 }
@@ -214,4 +321,36 @@ fieldset {
 
 .modal-header .close {
     margin-top: -30px;
+}
+
+@media only screen and (max-width: 500px) {
+    .container, .container-fluid {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+    .container-header {
+        margin: 0px 6px !important;
+    }
+    .panel-default {
+        padding: 15px 12px !important;
+    }
+    .container-menu {
+        padding: 27px 12px !important;
+        height: 80px !important;
+    }
+    .icon-top {
+        width: 50px;
+        height: 42px;
+        padding: 4px 0px;
+        font-size: 10px;
+    }
+    .menu {
+        width: 100% !important;
+    }
+    .menu-logo {
+        display: none !important;
+    }
+    .menu-item {
+        float: none !important;
+    }
 }

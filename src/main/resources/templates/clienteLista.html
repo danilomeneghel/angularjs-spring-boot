@@ -23,8 +23,12 @@
                 </div>
                 <div class="row">
                     <div class="form-actions float-left">
-                        <input type="submit"  value="{{!ctrl.cliente.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="clienteForm.$invalid || clienteForm.$pristine">
-                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="clienteForm.$pristine">Reiniciar</button>
+                        <button type="submit" class="btn btn-success" ng-disabled="clienteForm.$invalid || clienteForm.$pristine">
+                            <i class="fa fa-hdd-o"></i> {{!ctrl.cliente.id ? 'Adicionar' : 'Atualizar'}}
+                        </button>
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="clienteForm.$pristine">
+                            <i class="fa fa-eraser"></i> Reiniciar
+                        </button>
                     </div>
                 </div>
             </form>
@@ -33,7 +37,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -88,8 +92,12 @@
                         </div>
                         <div class="row">
                             <div class="form-actions float-left">
-                                <input type="submit"  value="Simular" class="btn btn-success" ng-disabled="emprestimoForm.$invalid || emprestimoForm.$pristine">
-                                <button type="button" ng-click="ctrl.resetEmprestimo()" class="btn btn-default" ng-disabled="emprestimoForm.$pristine">Limpar</button>
+                                <button type="submit" class="btn btn-success" ng-disabled="emprestimoForm.$invalid || emprestimoForm.$pristine">
+                                    <i class="fa fa-dollar"></i> Simular
+                                </button>
+                                <button type="button" ng-click="ctrl.resetEmprestimo()" class="btn btn-default" ng-disabled="emprestimoForm.$pristine">
+                                    <i class="fa fa-eraser"></i> Limpar
+                                </button>
                             </div>
                         </div>
                     </form>

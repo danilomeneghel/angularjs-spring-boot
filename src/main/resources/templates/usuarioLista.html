@@ -21,7 +21,7 @@
                         <input type="text" ng-model="ctrl.usuario.password" name="password" class="form-control" placeholder="Senha" />
                     </div>
                     <div class="form-group">
-                        <select class="form-control" ng-model="ctrl.usuario.role" name="role">
+                        <select ng-model="ctrl.usuario.role" name="role" id="role" class="form-control">
                             <option selected value="ADMIN">ADMIN</option>
                             <option value="USER">USER</option>
                         </select>
@@ -29,8 +29,12 @@
                 </div>
                 <div class="row">
                     <div class="form-actions float-left">
-                        <input type="submit"  value="{{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}" class="btn btn-success" ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine">
-                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="usuarioForm.$pristine">Reiniciar</button>
+                        <button type="submit" class="btn btn-success" ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine">
+                            <i class="fa fa-hdd-o"></i> {{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}
+                        </button>
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="usuarioForm.$pristine">
+                            <i class="fa fa-eraser"></i> Reiniciar
+                        </button>
                     </div>
                 </div>
             </form>
@@ -39,7 +43,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 14-Nov-2018 às 02:50
+-- Generation Time: 16-Nov-2018 às 01:50
 -- Versão do servidor: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `risco` enum('A','B','C') COLLATE utf8_bin NOT NULL,
   `endereco` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -44,9 +44,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 
 INSERT INTO `cliente` (`id`, `nome`, `rend_mensal`, `risco`, `endereco`) VALUES
 (1, 'Joao Silva', '2000.00', 'B', 'zzzzzzz'),
-(2, 'Ana', '2200.65', 'A', 'aaaaaaaaaa'),
-(3, 'Fernando', '3500.50', 'C', 'qweqeqwe'),
-(4, 'Vera', '1500.00', 'A', 'asdadasd');
+(2, 'Ana Maria', '8300.86', 'A', 'ccccccc'),
+(3, 'Fernando Souza', '1600.00', 'C', 'qweqewe');
 
 -- --------------------------------------------------------
 
@@ -63,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user`
@@ -71,8 +70,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `name`, `password`, `role`, `username`) VALUES
 (1, 'User', '$2a$10$ghvEZVe5ZzawvDJU/HlGPubVGXsYEn.Rgl1ytc6JZy3TpvWgOlECO', 'USER', 'user'),
-(2, 'Administrator', '$2a$08$bCCcGjB03eulCWt3CY0AZew2rVzXFyouUolL5dkL/pBgFkUH9O4J2', 'ADMIN', 'admin'),
-(45, 'teste', '$2a$10$jTBTcB9KZOut.BeC2ucZl.iK559gNxly9xPwKOaHlEvyuqUamo8gW', 'USER', 'teste');
+(2, 'Administrator', '$2a$08$bCCcGjB03eulCWt3CY0AZew2rVzXFyouUolL5dkL/pBgFkUH9O4J2', 'ADMIN', 'admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
