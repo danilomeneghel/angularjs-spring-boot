@@ -33,7 +33,7 @@ public class ClienteController {
     // Lista todos os Clientes
     @RequestMapping(value = "/cliente/", method = RequestMethod.GET)
     public ResponseEntity<List<Cliente>> listAllClientes() {
-        List<Cliente> clientes = clienteService.findAllClientes();
+        List<Cliente> clientes = clienteService.findAllByOrderByNomeAsc();
         if (clientes.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }

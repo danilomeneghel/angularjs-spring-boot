@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clienteApp').controller('ClienteController', [
-    'ClienteService', '$scope', '$localStorage', function (ClienteService, $scope, $localStorage) {
+    'ClienteService', '$scope', function (ClienteService, $scope) {
         var self = this;
         self.cliente = {};
         self.clientes = [];
@@ -19,7 +19,9 @@ angular.module('clienteApp').controller('ClienteController', [
         self.simularEmprestimo = simularEmprestimo;
         self.reset = reset;
         self.resetEmprestimo = resetEmprestimo;
-
+		self.divCollapse = divCollapse;
+		self.class = 'fa fa-plus';
+		
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
@@ -94,6 +96,7 @@ angular.module('clienteApp').controller('ClienteController', [
         function editCliente(id) {
             self.successMessage = '';
             self.errorMessage = '';
+			$(".collapse").collapse('show');
             ClienteService.getCliente(id).then(
                 function (cliente) {
                     self.cliente = cliente;
@@ -147,4 +150,14 @@ angular.module('clienteApp').controller('ClienteController', [
             self.emprestimo = {};
             $scope.emprestimoForm.$setPristine();
         }
+		
+		function divCollapse() {
+			$(".collapse").collapse('toggle');
+		}
+		
+		$(".collapse").on('show.bs.collapse', function () {
+			self.class = 'fa fa-minus';
+		}).on('hide.bs.collapse', function () {
+			self.class = 'fa fa-plus';
+		});
     }]);

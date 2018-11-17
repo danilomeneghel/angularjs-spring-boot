@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserDetailsService {
         return repository.findById(id).orElse(new User());
     }
 
-    public List<User> findAllByOrderByUsernameAsc() {
-        return repository.findAllByOrderByUsernameAsc();
+    public List<User> findAllByOrderByNameAsc() {
+        return repository.findAllByOrderByNameAsc();
     }
 
     public User findByName(String name) {

@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <h2>Usuários</h2>
-    <button type="button" class="btn btn-success toggle-btn">
-        <i class="fa fa-plus"></i> Usuário        
+    <button type="button" ng-click="ctrl.divCollapse()" class="btn btn-success">
+        <i ng-class="ctrl.class"></i> Usuário
     </button>
     <br><br>
-    <div class="panel panel-default collapse" id="collapse-form">
+    <div class="panel panel-default collapse">
         <div class="panel-body">
             <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
             <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
@@ -42,32 +42,46 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Usuário</th>
-                            <th>Função</th>
-                            <th class="text-center">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="usuario in ctrl.getAllUsers()">
-                            <td>{{usuario.id}}</td>
-                            <td>{{usuario.name}}</td>
-                            <td>{{usuario.username}}</td>
-                            <td>{{usuario.role}}</td>
-                            <td class="col-actions">
-                                <a ng-click="ctrl.editUser(usuario.id)" class="btn btn-primary show-btn"><i class="fa fa-edit"></i> Editar</a>
-                                <a sec:authorize="hasAuthority('ADMIN')" ng-click="ctrl.removeUser(usuario.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>		
+            <div class="row">
+                <div class="search">
+                    <div class="inner-addon right-addon">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control" placeholder="Pesquisar" ng-model="pesquisar" />
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>Função</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="usuario in filterData = (ctrl.getAllUsers()| filter: pesquisar) | limitTo: 5:5*(page-1)">
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.name}}</td>
+                        <td>{{usuario.username}}</td>
+                        <td>{{usuario.role}}</td>
+                        <td class="col-actions">
+                            <a ng-click="ctrl.editUser(usuario.id)" class="btn btn-primary show-btn"><i class="fa fa-edit"></i> Editar</a>
+                            <a sec:authorize="hasAuthority('ADMIN')" ng-click="ctrl.removeUser(usuario.id)" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="pagination-left">
+                    Total de Registros: {{filterData.length}}
+                </div>
+                <div class="pagination-right">
+                    <uib-pagination class="pagination-sm pagination" total-items="filterData.length" ng-model="page"
+                                    previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=5></uib-pagination>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/js/collapse.js}"></script>

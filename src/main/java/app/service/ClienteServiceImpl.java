@@ -47,10 +47,6 @@ public class ClienteServiceImpl {
         repository.deleteAll();
     }
 
-    public List<Cliente> findAllClientes() {
-        return (List<Cliente>) repository.findAll();
-    }
-
     public boolean isClienteExist(Cliente cliente) {
         return findByNome(cliente.getNome()) != null;
     }

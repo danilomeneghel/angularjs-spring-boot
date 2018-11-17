@@ -59,7 +59,7 @@ public class ClienteControllerTest {
         clienteService.findClienteById(cliente.getId());
 
         // Lista todos os clientes
-        clienteService.findAllClientes();
+        clienteService.findAllByOrderByNomeAsc();
 
         // Adiciona o risco
         clienteService.addRisk(cliente);

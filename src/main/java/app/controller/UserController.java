@@ -32,7 +32,7 @@ public class UserController {
     // Lista todos os Usuários
     @RequestMapping(value = "/usuario/", method = RequestMethod.GET)
     public ResponseEntity<List<User>> listAllUsers() {
-        List<User> users = userService.findAllUsers();
+        List<User> users = userService.findAllByOrderByNameAsc();
         if (users.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }

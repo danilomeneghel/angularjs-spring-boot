@@ -13,7 +13,9 @@ angular.module('usuarioApp').controller('UsuarioController', [
         self.removeUser = removeUser;
         self.editUser = editUser;
         self.reset = reset;
-
+		self.divCollapse = divCollapse;
+		self.class = 'fa fa-plus';
+		
         self.successMessage = '';
         self.errorMessage = '';
         self.done = false;
@@ -86,6 +88,7 @@ angular.module('usuarioApp').controller('UsuarioController', [
         function editUser(id) {
             self.successMessage = '';
             self.errorMessage = '';
+			$(".collapse").collapse('show');
             UsuarioService.getUser(id).then(
                 function (usuario) {
                     self.usuario = usuario;
@@ -102,4 +105,14 @@ angular.module('usuarioApp').controller('UsuarioController', [
             self.usuario = {};
             $scope.usuarioForm.$setPristine();
         }
+		
+		function divCollapse() {
+			$(".collapse").collapse('toggle');
+		}
+		
+		$(".collapse").on('show.bs.collapse', function () {
+			self.class = 'fa fa-minus';
+		}).on('hide.bs.collapse', function () {
+			self.class = 'fa fa-plus';
+		});
     }]);

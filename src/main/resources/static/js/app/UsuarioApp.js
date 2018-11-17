@@ -1,4 +1,4 @@
-var app = angular.module('usuarioApp', ['ui.router', 'ngStorage']);
+var app = angular.module('usuarioApp', ['ui.router', 'ngStorage', 'ui.bootstrap']);
 var url_base = window.location.origin;
 
 app.constant('urls', {

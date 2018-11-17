@@ -8,6 +8,8 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 - API RestFul
 - ACL
 - Validation
+- Filter
+- Pagination
 - Login
 - Responsive
 - JUnit
@@ -27,7 +29,6 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 - Spring
 - CSS
 - Bootstrap
-- Jquery
 - AngularJS
 - MySql
 
