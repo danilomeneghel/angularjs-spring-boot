@@ -28,6 +28,7 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 - Maven
 - Spring
 - CSS
+- Jquery
 - Bootstrap
 - AngularJS
 - MySql
