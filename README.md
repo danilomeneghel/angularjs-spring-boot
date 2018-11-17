@@ -16,9 +16,8 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 
 ## Requisitos
 
-- NetBeans 8.2
 - Java JDK 1.8
-- Apache Tomcat >= 9
+- Apache Maven >= 3.5.4
 - MySql >=5
 
 ## Tecnologias
@@ -57,7 +56,14 @@ mysql> source dbc.sql
 
 Depois abra o arquivo "src/main/resources/application.properties" e coloque os dados de acordo com a conexão do seu banco de dados. <br>
 
-Ao concluir a configuração, basta digitar no terminal "mvn spring-boot:run" e abrir no seu navegador o seguinte endereço: <br>
+Ao concluir a configuração, basta digitar no terminal:
+
+```
+$ mvn spring-boot:run
+``` 
+
+Aguarde carregar todo o serviço web. <br>
+Após concluído, abra o seu navegador o seguinte endereço: <br>
 
 http://localhost:8080/
 
