@@ -13,6 +13,11 @@ import javax.validation.Valid;
 
 import app.entity.User;
 import app.service.UserServiceImpl;
+import java.security.Principal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class CadastroController {
@@ -21,28 +26,46 @@ public class CadastroController {
     private UserServiceImpl userService;
 
     @RequestMapping(value = "cadastro")
-    public String cadastro(Model model) {
+    public String novoCadastro(Model model) {
         model.addAttribute("cadastro", new User());
         return "cadastro";
     }
 
+    @RequestMapping(value = "perfil")
+    public String editarCadastro(Principal principal, Model model) {
+        model.addAttribute("cadastro", userService.findByUsername(principal.getName()));
+        return "perfil";
+    }
+
     @RequestMapping(value = "salvarCadastro", method = RequestMethod.POST)
-    public String salvarCadastro(@Valid @ModelAttribute("cadastro") User user, BindingResult bindingResult, RedirectAttributes redirAttrs) {
-        if (!bindingResult.hasErrors()) { // Valida formulário
-            if (user.getPassword().equals(user.getPasswordCheck())) { // Verifica se as senhas são iguais		
-                if (userService.findByUsername(user.getUsername()) == null) { // Verifica se já existe o usuário
-                    // Criptografa a senha
-                    userService.encryptPassword(user);
-                    user.setRole("USER");
-                    userService.saveUser(user);
-                    redirAttrs.addFlashAttribute("message", "Usuário cadastrado com sucesso!");
-                    return "redirect:/login";
+    public String salvarCadastro(@Valid @ModelAttribute("cadastro") User user, BindingResult bindingResult, RedirectAttributes redirAttrs, Model model) {
+        User currentUser = userService.findByUsername(user.getUsername());
+        if (user.getId() == null) { // Verifica se é um cadastro novo ou não
+            if (!bindingResult.hasErrors()) { // Valida formulário
+                if (user.getPassword().equals(user.getPasswordCheck())) { // Verifica se as senhas são iguais		
+                    if (currentUser == null) { // Verifica se já existe o usuário
+                        // Criptografa a senha
+                        userService.encryptPassword(user);
+                        user.setRole("USER");
+                        userService.saveUser(user);
+                        redirAttrs.addFlashAttribute("message", "Usuário cadastrado com sucesso!");
+                        return "redirect:/login";
+                    } else {
+                        bindingResult.rejectValue("username", "error.userexists", "Usuário já existente");
+                    }
                 } else {
-                    bindingResult.rejectValue("username", "error.userexists", "Usuário já existente");
+                    bindingResult.rejectValue("passwordCheck", "error.pwdmatch", "Senhas não são iguais");
                 }
-            } else {
-                bindingResult.rejectValue("passwordCheck", "error.pwdmatch", "Senhas não são iguais");
             }
+        } else {
+            if (!bindingResult.hasErrors()) { // Valida formulário
+                // Criptografa a senha
+                userService.encryptPassword(user);
+                user.setRole(currentUser.getRole());
+                userService.saveUser(user);
+                model.addAttribute("message", "Usuário atualizado com sucesso!");
+            }
+            return "perfil";
         }
         return "cadastro";
     }
