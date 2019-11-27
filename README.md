@@ -5,7 +5,7 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 ## Características
 
 - CRUD
-- API RestFul
+- API RESTful
 - ACL
 - Validation
 - Filter
@@ -26,6 +26,7 @@ Projeto de um simulador de empréstimo para clientes, desenvolvido em Java com S
 - JPA
 - Maven
 - Spring
+- Swagger
 - CSS
 - Jquery
 - Bootstrap
@@ -74,6 +75,12 @@ https://angularjs-spring-boot.herokuapp.com/ <br>
 - Login
     - Username: admin
     - Password: admin
+
+## Swagger 
+
+Documentação da API RESTful: <br>
+
+https://angularjs-spring-boot.herokuapp.com/swagger-ui.html
 
 ## Licença
 
