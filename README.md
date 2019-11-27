@@ -82,6 +82,10 @@ Documentação da API RESTful: <br>
 
 https://angularjs-spring-boot.herokuapp.com/swagger-ui.html
 
+- Login
+    - Username: admin
+    - Password: admin
+
 ## Licença
 
 User Registration is licensed under <a href="LICENSE">The MIT License (MIT)</a>.
