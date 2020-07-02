@@ -22,7 +22,8 @@
                     </div>
                     <div class="form-group">
                         <select ng-model="ctrl.usuario.role" name="role" id="role" class="form-control">
-                            <option selected value="ADMIN">ADMIN</option>
+							<option selected="selected" disabled="disabled">Função</option>
+                            <option value="ADMIN">ADMIN</option>
                             <option value="USER">USER</option>
                         </select>
                     </div>
@@ -32,8 +33,8 @@
                         <button type="submit" class="btn btn-success" ng-disabled="usuarioForm.$invalid || usuarioForm.$pristine">
                             <i class="fa fa-hdd-o"></i> {{!ctrl.usuario.id ? 'Adicionar' : 'Atualizar'}}
                         </button>
-                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default" ng-disabled="usuarioForm.$pristine">
-                            <i class="fa fa-eraser"></i> Reiniciar
+                        <button type="button" ng-click="ctrl.reset()" class="btn btn-default">
+                            <i class="fa fa-eraser"></i> Limpar
                         </button>
                     </div>
                 </div>
