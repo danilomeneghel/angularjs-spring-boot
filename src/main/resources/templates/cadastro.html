@@ -4,10 +4,10 @@
     <head lang="en">
         <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
     </head>
-    <body class="layout-scroll-block">
-        <div class="bg-login">
+    <body class="layout-scroll-block bg-login">
+        <div class="bg-radial">
             <div class="container-cadastro">
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-body box-login">
                         <h3 class="title-login">Cadastro</h3>
                         <form th:object="${cadastro}" th:action="@{/salvarCadastro}" action="#" method="post">
