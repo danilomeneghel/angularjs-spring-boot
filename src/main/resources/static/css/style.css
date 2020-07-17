@@ -25,6 +25,9 @@ h3, .h3 {
 }
 
 .bg-login {
+    background-color: #0271cc;
+}
+.bg-radial {
     background-image: radial-gradient(#fff 8%, #0271cc 100%);
     min-height: 750px !important;
 }
